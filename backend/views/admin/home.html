@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block link %}
+
+
+        <html id='html_admhome'>
+        <link rel="stylesheet" href="/assets/css/home.css">    
+        <title>Cadastro</title>
+{% endblock %}
+
+    
+{% block body %}
+{% set username = constant('USERNAME') %}
+{% set useremail = constant('USEREMAIL') %}
+{% set userid = constant('USERID') %}
+{% set userdata = constant('USER_DATA') %}
+
+<section id="conteudo" class="">
+    <!-- <img id="img" src="/assets/img/3525926.jpg" alt=""> -->
+    <header id="header"  class=>
+        {{include('/assets/dados_session.html')}}
+        {{include('/assets/nav.html')}}
+
+    </header>
+    
+    {{include('/assets/tabela.html')}}
+
+
+
+    {{include('/assets/sessao_modal_cadastro.html')}}
+
+    </section>
+
+    {% endblock %}
+
+{% block script %}
+
+<script src="/assets/js/listar_usuarios.js"></script>
+
+{% endblock %}

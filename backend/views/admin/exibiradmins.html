@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block link %}
+
+
+        <html id='html_exibiradmins'>
+        <link rel="stylesheet" href="/assets/css/home.css">    
+        <title>Admins</title>
+{% endblock %}
+
+    
+{% block body %}
+
+<section id="conteudo">
+
+    <header id="header" >
+        {{include('/assets/dados_session.html')}}
+        {{include('/assets/nav.html')}}
+
+    </header>
+ 
+    {{include('/assets/tabela.html')}}
+
+
+
+    {{include('/assets/sessao_modal_adm.html')}}
+    
+<!--     
+    <footer id="footer">
+        <div id="div_footer">
+            <img src="/assets/img/regua_logos_todos_contra_dengue.png" >
+        </div>
+    </footer> -->
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script src="/assets/js/listar_admins.js"></script>
+{% endblock %}

@@ -1,0 +1,74 @@
+    1  ls
+    2  mkdir teste
+    3  cs documents
+    4  c documents
+    5  cd documents
+    6  ls
+    7  touch teste3.txt
+    8  nano teste3.txt
+    9  ls
+   10  rm teste3.txt
+   11  ls
+   12  ifconfig
+   13  sudo su
+   14  ls
+   15  sudo su
+   16  cd
+   17  top
+   18  sudo su
+   19  keys *
+   20  KEY *
+   21  KEYS *
+   22  GET key1
+   23  KEYS *
+   24  KEY *
+   25  redis-cli
+   26  sudo service redis-server restart
+   27  keys *
+   28  KEY *
+   29  KEY*
+   30  KEYS*
+   31  redis-cli
+   32  msfconsole
+   33  clear
+   34  sudo service redis-server restart
+   35  redis-cli
+   36  sudo service redis-server restart
+   37  HGETALL h_todoscontraadengue
+   38  redis-cli
+   39  clear
+   40  ls -l
+   41  mkdir origem
+   42  mkdir destino
+   43  cd origem
+   44  clear
+   45  touch arq1.txt
+   46  touch arq2.txt
+   47  echo oi > arq1.tx
+   48  echo oi > arq1.txt
+   49  echo oi > arq2.txt
+   50  ls -l
+   51  rsync --help
+   52  cls
+   53  clear
+   54  ls -l
+   55  rsync -hva . /mnt/c/Users/x395555/destino
+   56  echo 123> arq1.txt
+   57  ls -l
+   58  rsync -hva . /mnt/c/Users/x395555/destino
+   59  touch arq3.txt
+   60  echo oi> arq3.txt
+   61  rsync -hva --exclude arq3.txt . /mnt/c/Users/x395555/destino
+   62  cd ..
+   63  cd x395555
+   64  rsync -hva --exclude arq3.txt origem /mnt/c/Users/x395555/destino
+   65  rsync -hva --exclude arq3.txt origem/ /mnt/c/Users/x395555/destino
+   66  history > arquivo.txt
+   67  ls
+   68  history > C:;
+   69  history > C:/arquivo.txt
+   70  history > C://arquivo.txt
+   71  history > C:\arquivo.txt
+   72  ls
+   73  cd Documents
+   74  history > arquivo.txt
