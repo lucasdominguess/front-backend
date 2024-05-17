@@ -19,7 +19,7 @@ class Token {
     
     $time_inicio = new DateTime('now', new DateTimeZone('America/Sao_Paulo'));
     $newtime = $time_inicio->format('Y-m-d H:i:s');
-    $exp_time = date_add($time_inicio,date_interval_create_from_date_string('+60 minutes'));
+    $exp_time = date_add($time_inicio,date_interval_create_from_date_string('+60 minutes '));
     $new_exp_time = $exp_time->format('Y-m-d H:i:s');
 
     $payload = [

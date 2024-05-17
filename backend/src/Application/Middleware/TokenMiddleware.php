@@ -31,6 +31,9 @@ class TokenMiddleware {
             return $response->withHeader('Location', '/')->withStatus(302); 
         }
 
+        
+
+
         $email = $_SESSION[User::USER_EMAIL];
 
         $decoded = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));

@@ -22,7 +22,7 @@ class LogarAction extends UserAction
     protected function action(): Response
     {  
       
-         //criando instancia de logger 
+        //criando instancia de logger 
         //  $logger = new CreateLogger();
 
         
@@ -59,7 +59,7 @@ class LogarAction extends UserAction
     // Verificando se email e senha correspondem a um cadastro valido 
     $stmt=$db->prepare("Select * from usuarios where email = :email");
     $stmt->bindValue(":email",$email);
-    $stmt->execute();
+    $stmt->execute();  
    
         $retorno = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!isset($retorno[0]['id_adm'])||!password_verify($senha,$retorno[0]['senha']))
@@ -134,7 +134,8 @@ class LogarAction extends UserAction
                 // Helpers::dd($token) ; 
                 
 
-                $response= ['status'=>'ok','msg'=>'logado com sucesso','token'=> $_COOKIE['token'],'location'=>'/sender'];
+                // $response= ['status'=>'ok','msg'=>'logado com sucesso','token'=> $_COOKIE['token'],'location'=>'/sender'];
+                $response= ['status'=>'ok','msg'=>'logado com sucesso','location'=>'/sender'];
 
                 return $this->respondWithData($response);
 
