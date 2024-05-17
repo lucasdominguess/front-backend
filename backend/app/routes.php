@@ -73,6 +73,7 @@ return function (App $app) {
         $app->post('/sair',SairSessaoAction::class); //sair da sessao
         $app->get('/listar',ListarAction::class); //listar dados para tabela
         $app->post('/cadastrar',CadastrarAction::class); //efetuar cadastro
+        $app->get('/teste',CadastrarAction::class); //efetuar cadastro
         
         
        

@@ -1,12 +1,16 @@
 <?php
 namespace App\Application\Actions\User\controlers;
 
-use App\Infrastructure\Helpers;
 use PDO;
 use App\classes\Token;
+
+
 use App\Domain\User\User;
 use App\classes\CreateLogger;
 use App\classes\BloquearAcesso;
+use App\Infrastructure\Helpers;
+
+
 use App\Application\Actions\User\UserAction;
 use App\Infrastructure\Persistence\User\Sql;
 use App\Infrastructure\Persistence\User\RedisConn;
@@ -19,7 +23,7 @@ class LogarAction extends UserAction
     {  
       
          //criando instancia de logger 
-         $logger = new CreateLogger();
+        //  $logger = new CreateLogger();
 
         
         $email = $_POST['email'] ?? null;
@@ -32,7 +36,7 @@ class LogarAction extends UserAction
             $db = new Sql();
         }catch(\PDOException $e){ 
             $response = (['status'=>'fail','msg'=> $e->getMessage()]);
-            $logger->logger('Erro Sql', "Erro ao conectar no Banco de dados",'warning'); 
+            // $logger->logger('Erro Sql', "Erro ao conectar no Banco de dados",'warning'); 
             return $this->respondWithData($response);
         }
 
@@ -60,7 +64,7 @@ class LogarAction extends UserAction
         $retorno = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!isset($retorno[0]['id_adm'])||!password_verify($senha,$retorno[0]['senha']))
             {   
-                $block = new BloquearAcesso($email,$db); 
+                $block = new BloquearAcesso(); 
 
                 $res=$block->bloqueio($email,$db);
                 
@@ -83,26 +87,24 @@ class LogarAction extends UserAction
                
             }   
                  //criando instancia do redis e verifica se ja existe usuario logado 
-                try {
+                // try {
                   
-                    $redis = new RedisConn(); 
-                    $redis_user = $redis->hget($email,'email'); 
-                } catch (\Throwable $e) {
-                    $logger->logger('Erro Redis','Erro ao conectar em Redis','warning');
-                    $response = (['status'=>'fail','msg'=> $e->getMessage()]);
-                    return $this->respondWithData($response);
-                }
-                    if($redis_user){
-                        $response= (['status'=>'fail','msg'=>'Usuario ja esta logado']);
-                        $logger->logger("Duplicidade de Sessão","Tentativa de multiplos acessos $email " ,'warning',IP_SERVER);
-                        return $this->respondWithData($response);
-                    }
+                //     $redis = new RedisConn(); 
+                //     $redis_user = $redis->hget($email,'email'); 
+                // } catch (\Throwable $e) {
+                //     $logger->logger('Erro Redis','Erro ao conectar em Redis','warning');
+                //     $response = (['status'=>'fail','msg'=> $e->getMessage()]);
+                //     return $this->respondWithData($response);
+                // }
+                //     if($redis_user){
+                //         $response= (['status'=>'fail','msg'=>'Usuario ja esta logado']);
+                //         $logger->logger("Duplicidade de Sessão","Tentativa de multiplos acessos $email " ,'warning',IP_SERVER);
+                //         return $this->respondWithData($response);
+                //     }
                     // }
       
                 //criando dados do User 
                 $user = new User($retorno[0]['id_adm'],$retorno[0]['nome'],$retorno[0]['email'],$retorno[0]['nivel']);
-                
-
                 $_SESSION[User::USER_ID]=$user->id_adm;
                 $_SESSION[User::USER_NAME]=$user->nome;
                 $_SESSION[User::USER_EMAIL]=$user->email;
@@ -113,24 +115,26 @@ class LogarAction extends UserAction
      
                 // gerando loggers 
                 // $logger->loggerProcessor();
-                $logger->logger("LOGIN",'Usuario: '.$_SESSION[User::USER_NAME].' Realizou Login ','info',IP_SERVER);
+                // $logger->logger("LOGIN",'Usuario: '.$_SESSION[User::USER_NAME].' Realizou Login ','info',IP_SERVER);
                 // $logger->logTelegran($_SESSION);
                 
                 // criando token do usuario
-                $token = new Token($_SESSION[User::USER_NAME]);
+                // $token = new Token($_SESSION[User::USER_NAME]);
+                $token = new Token($email);
 
-               
+            //    Helpers::dd($token);
                 //criando instancia do redis e key fild do usuario 
-                $redis = new RedisConn(); 
-                $redis->hset($_SESSION[User::USER_EMAIL], 'name',$_SESSION[User::USER_NAME]);
-                $redis->hset($_SESSION[User::USER_EMAIL], 'email',$_SESSION[User::USER_EMAIL] );
-                $redis->hset($_SESSION[User::USER_EMAIL], 'nivel',$_SESSION[User::USER_NIVEL] );
-                $redis->expire($_SESSION[User::USER_EMAIL], 3600);
+                // $redis = new RedisConn(); 
+                // $redis->hset($_SESSION[User::USER_EMAIL], 'name',$_SESSION[User::USER_NAME]);
+                // $redis->hset($_SESSION[User::USER_EMAIL], 'email',$_SESSION[User::USER_EMAIL] );
+                // $redis->hset($_SESSION[User::USER_EMAIL], 'nivel',$_SESSION[User::USER_NIVEL] );
+                // $redis->expire($_SESSION[User::USER_EMAIL], 3600);
 
 
+                // Helpers::dd($token) ; 
                 
 
-                $response= ['status'=>'ok','msg'=>'logado com sucesso','location'=>'/sender'];
+                $response= ['status'=>'ok','msg'=>'logado com sucesso','token'=> $_COOKIE['token'],'location'=>'/sender'];
 
                 return $this->respondWithData($response);
 
