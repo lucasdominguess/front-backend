@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block link %}
+
+
+        <html id='html_configuracoesadm'>
+        <link rel="stylesheet" href="/assets/css/home.css">
+        <link rel="stylesheet" href="/assets/css/config.css">
+        <title>Configurações</title>
+{% endblock %}
+
+
+{% block body %}
+
+
+<section id="conteudo">
+
+    <header id="header" >
+        {{include('/assets/dados_session.html')}}
+        {{include('/assets/nav.html')}}
+      <div>
+
+      </div>
+    </header>
+
+<section id="configuracoes" class="form-control d-flex body " >
+
+    <div id="editfoto" class="form-control container col-sm-5">
+        <div id="div_img">
+            <img id="img" src="/assets/img/perfilM.svg" alt="">
+        </div>
+        <div id="div">
+            <div id="div_h1" class="d-flex ">
+
+                <h2>Editar Foto de Perfil</h2>
+            </div>
+            <div>
+                
+                <form id="form_config" class="d-flex "  method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" accept="images/gif, images/jpeg, images/png, images/jpg, images/jfif">
+                    <button  class="btn btn-outline-primary " type="submit">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+         <section id="sessao_tabela" class="container col-sm-10 form-control">
+
+          <div
+            class="table-responsive"
+          >
+            <table
+              class="table "
+            >
+              <thead>
+                <tr>
+                  <th scope="col">Nome do Arquivo</th>
+                  <th scope="col">tamanho</th>
+                  <th scope="col">tipo</th>
+                  <th scope="col">Download</th>
+                </tr>
+              </thead>
+              <tbody id="tb_arq">
+               
+              </tbody>
+            </table>
+          </div>
+          
+          <ul id="ul_list">
+
+          </ul>
+            <!-- <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                    <th scope="col">Download</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td >Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td><button id="btn_dowload_01" class="btn btn-outline-primary">Download</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td><a href=""></a></td>
+
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                    <td><button id="btn_dowload_03" class="btn btn-outline-primary">Download</button></td>
+                  </tr>
+                </tbody>
+              </table> -->
+        </section>
+        <!-- <section id="sessao_tabela" class="container col-sm-8">
+          
+
+      </section> -->
+
+
+
+</section>
+<script src="/assets/js/config_adm.js"></script>
+<script src="/assets/js/ajax.js"></script>
+{% endblock %}

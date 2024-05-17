@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% set username = constant('USERNAME') %}
+{% set useremail = constant('USEREMAIL') %}
+{% set userid = constant('USERID') %}
+{% set userdata = constant('USER_DATA') %}
+
+{% block link %}
+        <html id='html_userhome'>
+        <link rel="stylesheet" href="/assets/css/home.css">  
+        {% if userid != 4 %}  
+
+        <link rel="stylesheet" href="/assets/css/homeuser.css">  
+        {% endif %}
+        <title>Cadastro</title>
+{% endblock %}
+
+    
+{% block body %}
+
+
+<section id="conteudo">
+    <header id="header">
+        {{include('/assets/dados_session.html')}}
+        {{include('/assets/nav.html')}}
+
+    </header>
+    
+    {{include('/assets/tabela.html')}}
+
+
+
+    {{include('/assets/sessao_modal_cadastro.html')}}
+
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script src="/assets/js/listar_usuarios.js"></script>
+{% endblock %}
