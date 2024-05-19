@@ -68,12 +68,13 @@ return function (App $app) {
     // });
         
     //ROTAS PUBLICAS
-        $app->post('/logar',LogarAction::class);
+        
+    $app->post('/logar',LogarAction::class);
         // ->add(ValidatePostMiddleware::class); //efetuar login 
         $app->post('/sair',SairSessaoAction::class); //sair da sessao
         $app->get('/listar',ListarAction::class); //listar dados para tabela
         $app->post('/cadastrar',CadastrarAction::class); //efetuar cadastro
-        $app->get('/teste',CadastrarAction::class); //efetuar cadastro
+        $app->post('/teste',CadastrarAction::class); //efetuar cadastro
         
         
        
@@ -123,8 +124,7 @@ return function (App $app) {
         // $group->get('/download/{filename}',DownloadAction::class);
 
 
-    });
-    // ->add(new TokenMiddleware())->add(new AdminMiddleware());
+    })->add(new TokenMiddleware())->add(new AdminMiddleware());
 
 
     // rotas Usuarios

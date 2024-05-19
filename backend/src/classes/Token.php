@@ -1,7 +1,7 @@
 <?php 
 namespace App\classes;
 
-use App\Infrastructure\Helpers;
+
 use DateTime;
 use DateTimeZone;
 use Firebase\JWT\JWT;
@@ -19,7 +19,7 @@ class Token {
     
     $time_inicio = new DateTime('now', new DateTimeZone('America/Sao_Paulo'));
     $newtime = $time_inicio->format('Y-m-d H:i:s');
-    $exp_time = date_add($time_inicio,date_interval_create_from_date_string('+60 minutes '));
+    $exp_time = date_add($time_inicio,date_interval_create_from_date_string('+60 minutes'));
     $new_exp_time = $exp_time->format('Y-m-d H:i:s');
 
     $payload = [
@@ -33,10 +33,8 @@ class Token {
         //  print_r("chave cripto: ".$jwt ."\n");
         setcookie('token',$jwt);
         $_SESSION['EXP_TOKEN'] = $new_exp_time ;
-    
-        // return $jwt ; 
         
-    //  Helpers::dd($jwt) ;  
+     
     }
  }
 
@@ -55,8 +53,8 @@ class Token {
 //         // print_r("chave cripto: ".$jwt ."\n");
        
 
-        // $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
-        // print_r($decoded);
+//         $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
+//         // print_r($decoded);
 
 
 //         // Pass a stdClass in as the third parameter to get the decoded header values

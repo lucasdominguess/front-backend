@@ -38,6 +38,7 @@ if (false) { // Should be set to true in production
 $settings = require __DIR__ . '/../app/settings.php';
 $settings($containerBuilder);
 
+$env = parse_ini_file(__DIR__ .'/../.env');
 // Set up dependencies
 $dependencies = require __DIR__ . '/../app/dependencies.php';
 $dependencies($containerBuilder);
@@ -54,7 +55,6 @@ AppFactory::setContainer($container);
 $app = AppFactory::create();
 
 // $config = parse_ini_file(__DIR__ .'../config');
-$env = parse_ini_file(__DIR__ .'/../.env');
 // Create Twig
 $twig = Twig::create(__DIR__ .'/../views', ['cache' => false]);
 $container->set('view',$twig);

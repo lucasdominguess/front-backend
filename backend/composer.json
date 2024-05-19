@@ -24,6 +24,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-json": "*",
+        "ext-redis": "*",
         "firebase/php-jwt": "^6.10",
         "guzzlehttp/guzzle": "^7.8",
         "league/csv": "9.0",

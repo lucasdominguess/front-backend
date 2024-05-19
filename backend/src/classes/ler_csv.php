@@ -12,7 +12,17 @@
 
 // $csv = Reader::createFromPath('./file.csv','r+')
 //     ->setHeaderOffset(0)
-// ;
+
+$arquivo = __DIR__.'/dados.csv'; 
+$file = fopen($arquivo,'r'); 
+
+$l = fgetcsv($file ,null,); 
+// foreach ($l as $record) { 
+
+// }
+
+print_r($l);
+
 
 
 // foreach ($csv as $record) {
@@ -22,4 +32,3 @@
 //     $sth->bindValue(':email', $record['email'], PDO::PARAM_STR);
 //     $sth->execute();
 // }
-// print_r($csv);

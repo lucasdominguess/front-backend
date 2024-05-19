@@ -4,26 +4,36 @@ declare(strict_types=1);
 
 namespace App\Application\Actions;
 
-use App\Domain\DomainException\DomainRecordNotFoundException;
+use App\classes\CreateLogger;
+use Psr\Log\LoggerInterface;
+use Slim\Exception\HttpNotFoundException;
+use Slim\Exception\HttpBadRequestException;
+use App\Infrastructure\Persistence\User\Sql;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Log\LoggerInterface;
-use Slim\Exception\HttpBadRequestException;
-use Slim\Exception\HttpNotFoundException;
+use App\Domain\DomainException\DomainRecordNotFoundException;
+use App\Infrastructure\Persistence\User\RedisConn;
 
 abstract class Action
 {
     protected LoggerInterface $logger;
 
+    protected Sql $sql;
+
+    protected RedisConn $redisConn ; 
+    protected CreateLogger $createLogger ; 
     protected Request $request;
 
     protected Response $response;
 
     protected array $args;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct(LoggerInterface $logger , Sql $sql ,RedisConn $redisConn, CreateLogger $createLogger)
     {
         $this->logger = $logger;
+        $this->sql = $sql;
+        $this->redisConn = $redisConn; 
+        $this->createLogger = $createLogger; 
     }
 
     /**

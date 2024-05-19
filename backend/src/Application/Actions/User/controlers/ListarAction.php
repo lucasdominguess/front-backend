@@ -60,7 +60,5 @@ class ListarAction extends Action {
         }
     
         return $this->respondWithData(['msg'=>'erro']);
-    // }
-    
-}
-}
+     }
+    }

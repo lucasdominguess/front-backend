@@ -21,14 +21,10 @@ use Psr\Http\Message\ResponseInterface as Response;
 class SairSessaoAction extends UserAction 
 { 
     protected function action(): Response 
-
-    
     {   
-        $logger = new CreateLogger();
-        $logger->logger("LOGOUT",'Usuario: '.$_SESSION[User::USER_NAME].' Desconectou','info');
-
-        $redis = new RedisConn(); 
-        $redis->del($_SESSION[User::USER_EMAIL]);
+        
+        $this->createLogger->logger("LOGOUT",'Usuario: '.$_SESSION[User::USER_NAME].' Desconectou','info'); 
+        $this->redisConn->del($_SESSION[User::USER_EMAIL]);
         
         setcookie('token','',-1,'/');
         session_unset();

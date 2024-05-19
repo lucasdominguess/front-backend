@@ -4,7 +4,9 @@ import pandas as pd
 
 from sqlalchemy import create_engine , text 
 
-df = pd.read_excel("20-HM Ignácio Proença de Gouvêa.xlsx",sheet_name="pesquisa_satisfacao")
+# df = pd.read_excel("20-HM Ignácio Proença de Gouvêa.xlsx",sheet_name="pesquisa_satisfacao")
+df = pd.read_csv("logs02-05-2024.csv")
+
 # print(table)
 # exit()
 
@@ -14,7 +16,7 @@ engine = create_engine(sql)
 
 with engine.connect() as conn :
     # df=pd.read_sql(text("select * from estagiarios"),conn)
-    df.to_sql("lucas_criou",if_exists="append",index=False,con=conn)
+    df.to_sql("lucas_criou_csv",if_exists="append",index=False,con=conn)
     conn.commit()
 
 
