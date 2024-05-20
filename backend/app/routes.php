@@ -124,8 +124,9 @@ return function (App $app) {
         // $group->get('/download/{filename}',DownloadAction::class);
 
 
-    })->add(new TokenMiddleware())->add(new AdminMiddleware());
-
+    })
+    // ->add(new TokenMiddleware())->add(new AdminMiddleware());
+;
 
     // rotas Usuarios
     $app->group('/user',function(Group $group){ 
@@ -134,7 +135,8 @@ return function (App $app) {
             return $view->render($response, '/users/home_users.html', [
               
             ]);
-            })->setName('home_user')->add(new TokenMiddleware())->add(new UserMiddleware());
+            })->setName('home_user');
+            // ->add(new TokenMiddleware())->add(new UserMiddleware());
             
 
     });
